@@ -12,13 +12,13 @@ function repartir() {
 }
 
 function agregarGastosAListas() {
-  usuario.push(usuario.value);
+  usuarios.push(usuario.value);
   pagos.push(pago.value);
 }
 
 function ultimoAPantalla() {
-  const li = documen.createElement("li");
-  const text = document.createTextNode(`$usuario.value} pago $${pago.value}`);
+  const li = document.createElement("li");
+  const text = document.createTextNode(`${usuario.value}: Pagó $${pago.value}`);
   li.classList.add("list-group-item");
   li.appendChild(text);
   listado.appendChild(li);
@@ -27,17 +27,17 @@ function ultimoAPantalla() {
 function sumarValores(pagos) {
   let suma = 0;
   for (let pago of pagos) {
-    suma += parsenInt(pago);
+    suma += parseInt(pago);
   }
   return suma;
 }
 
-function showPagoIndividual() {
+function mostrarPagoIndividualEnHTML() {
   const total = sumarValores(pagos);
   const aporteIndividual = total / usuarios.length;
 
   cuadroResultado.innerText = `Total : ${total}
-                                    Cada uno debe aportar= ${aporteIndividual.toFixed(
+                                    Cada uno debe aportar: ${aporteIndividual.toFixed(
                                       2
                                     )}`;
 }
